@@ -18,9 +18,13 @@ namespace DataformXamarin
             base.OnAttachedTo(bindable);
             dataForm = bindable.FindByName<SfDataForm>("dataForm");
             button = bindable.FindByName<Button>("Commit");
-            dataForm.DataObject = new ContactInfo();
-            dataForm.AutoGeneratingDataFormItem += DataForm_AutoGeneratingDataFormItem;
-            button.Clicked += Button_Clicked;
+            dataForm.DataObject = new ContactInfo();          
+            this.WireEvents();
+        }
+        private void WireEvents()
+        {
+            this.dataForm.AutoGeneratingDataFormItem += DataForm_AutoGeneratingDataFormItem;
+            this.button.Clicked += Button_Clicked;
         }
         private void DataForm_AutoGeneratingDataFormItem(object sender, AutoGeneratingDataFormItemEventArgs e)
         {
@@ -41,6 +45,16 @@ namespace DataformXamarin
         {
             refreshLayout = true;
             dataForm.RefreshLayout(true);
+        }
+        protected override void OnDetachingFrom(ContentPage bindable)
+        {
+            base.OnDetachingFrom(bindable);
+            this.UnWireEvents();
+        }
+        private void UnWireEvents()
+        {
+            this.dataForm.AutoGeneratingDataFormItem -= DataForm_AutoGeneratingDataFormItem;
+            this.button.Clicked -= Button_Clicked;
         }
     }
 }
