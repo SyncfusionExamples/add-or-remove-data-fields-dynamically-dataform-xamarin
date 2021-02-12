@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DataformXamarin"
+             xmlns:dataForm="clr-namespace:Syncfusion.XForms.DataForm;assembly=Syncfusion.SfDataForm.XForms"
+             x:Class="DataformXamarin.MainPage">
+
+    
+    <ContentPage.Behaviors>
+        <local:DataformBehavior/>
+    </ContentPage.Behaviors>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <dataForm:SfDataForm Grid.Row="0" x:Name="dataForm" />
+            <Button x:Name="Commit" Grid.Row="1" WidthRequest="100" HeightRequest="50" Text="MORE FIELDS" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
